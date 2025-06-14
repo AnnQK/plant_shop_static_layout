@@ -9,9 +9,10 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name][contenthash].js',
+    filename: '[name].[contenthash].js',
     clean: true,
     assetModuleFilename: 'assets/img/[name].[ext]',
+    publicPath: '/plant/',
   },
   devtool: 'source-map',
   devServer: {
