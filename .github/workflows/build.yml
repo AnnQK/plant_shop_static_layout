@@ -21,8 +21,8 @@ jobs:
           - name: Clear cache
             run: docker builder prune -a
           - name: Build docker image
-            run: docker build -t plant-shop-static-layout .
+            run: docker build -t plant .
           - name: Stop current container
-            run: docker stop plant-shop-static-layout
+            run: docker stop plant
           - name: Run new container
-            run: docker run -it -d -p 80:80 plant-shop-static-layout --rm --name plant-shop-static-layout
+            run: docker run -it -d -p 80:80 plant --rm --name plant
