@@ -25,4 +25,4 @@ jobs:
           - name: Stop current container
             run: docker stop plant
           - name: Run new container
-            run: docker run -it -d -p 80:80 plant --rm --name plant
+            run: docker run -it -d -p 8080:80 --rm --name plant plant
