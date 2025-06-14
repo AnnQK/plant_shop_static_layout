@@ -1,0 +1,28 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: plant-site
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+
+  deploy:
+        needs: [build]
+        runs-on: plant-site
+        steps:
+          - name: Clear cache
+            run: docker builder prune -a
+          - name: Build docker image
+            run: docker build -t plant-shop-static-layout .
+          - name: Stop current container
+            run: docker stop plant-shop-static-layout
+          - name: Run new container
+            run: docker run -it -d -p 80:80 plant-shop-static-layout --rm --name plant-shop-static-layout
